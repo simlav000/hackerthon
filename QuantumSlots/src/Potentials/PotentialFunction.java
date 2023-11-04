@@ -15,12 +15,14 @@ public abstract class PotentialFunction {
         potentialStructure = potentialType;
         basisFunctions = new ArrayList<>(1);
         magnitudes = new ArrayList<>(1);
+        normalizeMagnitudes();
     }
     //Constructor
     public PotentialFunction(Potentials potentialType, ArrayList<Integer> basisFunctions, ArrayList<Double> magnitudes) {
         potentialStructure = potentialType;
         this.basisFunctions = basisFunctions;
         this.magnitudes = magnitudes;
+        normalizeMagnitudes();
 
     }
     public Potentials getPotentialStructure() {
@@ -49,5 +51,22 @@ public abstract class PotentialFunction {
      * @return
      */
     public abstract double eigenBasis(double position, int basisNumber);
+
+    /**
+     * Makes sure the sum of the square of the magnitudes is equal to 1
+     * @return True if succeeded, false otherwise
+     */
+    private void normalizeMagnitudes() {
+        double sum = 0;
+        int size = magnitudes.size();
+        // Gets the sum of the magnitudes square
+        for (int i = 0; i < size; i++) {
+            sum += magnitudes.get(i)*magnitudes.get(i);
+        }
+        // Divides each magnitudes by the sum of the magnitudes square to make sure the wavefunction is normalized.
+        for (int i = 0; i < size; i++) {
+            magnitudes.set(i, magnitudes.get(i)/sum);
+        }
+    }
 
 }
