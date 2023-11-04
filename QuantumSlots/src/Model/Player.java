@@ -46,4 +46,9 @@ public class Player {
     public void setSelector2position(float selector2position) {
         this.selector2position = selector2position;
     }
+
+    public void setSelectors(float selector1, float selector2) {
+        selector1position = selector1;
+        selector2position = selector2;
+    }
 }
