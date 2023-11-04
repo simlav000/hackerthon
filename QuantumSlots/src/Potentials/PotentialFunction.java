@@ -3,6 +3,7 @@ package Potentials;
 import Model.Potentials;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public abstract class PotentialFunction {
     private Potentials potentialStructure;
@@ -13,8 +14,8 @@ public abstract class PotentialFunction {
     //Default constructor. Uses groundstate eigenbasis and magnitude of 1.
     public PotentialFunction(Potentials potentialType) {
         potentialStructure = potentialType;
-        basisFunctions = new ArrayList<>(1);
-        magnitudes = new ArrayList<>(1);
+        basisFunctions = new ArrayList<>(Arrays.asList(1));
+        magnitudes = new ArrayList<>(Arrays.asList(1.0));
         normalizeMagnitudes();
     }
     //Constructor
@@ -65,7 +66,7 @@ public abstract class PotentialFunction {
         }
         // Divides each magnitudes by the sum of the magnitudes square to make sure the wavefunction is normalized.
         for (int i = 0; i < size; i++) {
-            magnitudes.set(i, magnitudes.get(i)/sum);
+            magnitudes.set(i, magnitudes.get(i)/Math.pow(sum, 0.5));
         }
     }
 
