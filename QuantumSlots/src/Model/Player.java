@@ -15,6 +15,7 @@ public class Player {
             throw new IllegalArgumentException("Not a valid bet");
         }
         this.bet = bet;
+        coins = coins - bet;
     }
 
     public Player(int coins, float selector1position, float selector2) {

@@ -8,4 +8,8 @@ public abstract class PotentialFunction {
     public Potentials getPotentialStructure() {
         return potentialStructure;
     }
+
+    public float measure(double time){
+        return 0;
+    }
 }
