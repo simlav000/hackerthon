@@ -12,13 +12,23 @@ public class InfiniteSquareWell extends PotentialFunction {
      * Default constructor for the infinite square well.
      * It creates a wave function with only the first eigenbasis
      */
+    //Default constructor
     public InfiniteSquareWell() {
-        this.potentialStructure = Potentials.InfiniteSquareWell;
-        this.basisFunctions = new ArrayList<>(1);
+        super(Potentials.InfiniteSquareWell);
         squareWellWidth = 1;
+    }
+    //Constructor
+    public InfiniteSquareWell(ArrayList<Integer> basisFunctions, ArrayList<Double> magnitudes, double squareWellWidth) {
+        super(Potentials.InfiniteSquareWell, basisFunctions, magnitudes);
+        this.squareWellWidth = squareWellWidth;
     }
     @Override
     public double evaluate(double position, double time) {
+        return 0;
+    }
+
+    @Override
+    public double makeMeasurement(double position, double time) {
         return 0;
     }
 

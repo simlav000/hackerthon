@@ -5,25 +5,45 @@ import Model.Potentials;
 import java.util.ArrayList;
 
 public abstract class PotentialFunction {
-    Potentials potentialStructure;
+    private Potentials potentialStructure;
     // List holding the eigenstates used
-    ArrayList<Integer> basisFunctions;
+    private ArrayList<Integer> basisFunctions;
     // List of magnitudes for each eigenstates
-    ArrayList<Double> magnitudes;
+    private ArrayList<Double> magnitudes;
+    //Default constructor. Uses groundstate eigenbasis and magnitude of 1.
+    public PotentialFunction(Potentials potentialType) {
+        potentialStructure = potentialType;
+        basisFunctions = new ArrayList<>(1);
+        magnitudes = new ArrayList<>(1);
+    }
+    //Constructor
+    public PotentialFunction(Potentials potentialType, ArrayList<Integer> basisFunctions, ArrayList<Double> magnitudes) {
+        potentialStructure = potentialType;
+        this.basisFunctions = basisFunctions;
+        this.magnitudes = magnitudes;
+
+    }
     public Potentials getPotentialStructure() {
+
         return potentialStructure;
     }
-
     /**
      * Evaluates the value of the wave function
      * @param position Position along the x axis where the function is to be evaluated
      * @param time Time at which the function is to be evaluated
-     * @return The value of the wave function
+     * @return The probability density of the wave function
      */
     public abstract double evaluate(double position, double time);
 
     /**
-     * Evaluates the value of tthe nth eigenbasis
+     * "Observe" the particle and makes the wavefunction collapse
+     * @param time Time at which the function is to be observed
+     * @return The position of the collapse
+     */
+    public abstract double makeMeasurement(double position, double time);
+
+    /**
+     * Evaluates the value of the nth eigenbasis
      * @param position Position at which to evaluate the basis
      * @param basisNumber Number determining which eigenbasis to evaluate.
      * @return
